@@ -13,5 +13,7 @@
 ${requestScope.message}
 <hr>
 <a href="${ctx}/signup.jsp">SIGN UP</a>
+<hr>
+<a href="${ctx}/message/add.jsp">留言</a>
 </body>
 </html>

@@ -37,7 +37,7 @@ public class UserController extends BaseController {
         if (user != null) {
             getSession().setAttribute("user", user);
             if (user.getRole().equals("admin")) {
-                return "redirect:/admin.jsp";
+                return "redirect:/message/list";
             }
             if (user.getRole().equals("user")) {
                 return "redirect:/user.jsp";

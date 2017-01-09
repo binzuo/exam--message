@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="message">
+    <insert id="add" parameterType="message" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO exam.message (
+    username, 
+    content, 
+    time
+        )
+        VALUES (
+    #{username}, 
+    #{content}, 
+    #{time}
+        );
+    </insert>
+    <delete id="remove">
+        DELETE FROM exam.message
+        WHERE message.id = #{id}
+    </delete>
+    <update id="modify">
+        UPDATE exam.message
+        SET
+    username = #{username}, 
+    content = #{content}, 
+    time = #{time}
+        WHERE message.id = #{id}
+    </update>
+    <select id="list" resultType="message">
+        SELECT *
+        FROM exam.message
+        ORDER BY id
+    </select>
+    <select id="query" parameterType="message" resultType="message">
+        SELECT *
+        FROM exam.message
+        <where>
+            <if test="id != null and id != ''">
+            message.id = #{id}
+            </if>
+            <if test="username != null and username != ''"> AND username LIKE "%"#{username}"%"</if>
+            <if test="content != null and content != ''"> AND content LIKE "%"#{content}"%"</if>
+            <if test="time != null and time != ''"> AND time LIKE "%"#{time}"%"</if>
+        </where>
+    </select>
+    <select id="search" resultType="message">
+        SELECT *
+        FROM exam.message
+        WHERE message.id = #{id}
+    </select>
+</mapper>
